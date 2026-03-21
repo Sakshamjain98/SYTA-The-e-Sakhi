@@ -66,4 +66,55 @@ The frontend dev server defaults to `http://localhost:3000` and can be configure
 
 ---
 
-If you want, I can now push a branch with these rename changes and help connect/deploy to Vercel, or prepare a serverless API proxy — tell me which.
+## Tech stack
+- Frontend: React (create-react-app), styled-components, MUI
+- Backend: FastAPI, Uvicorn, NumPy, NLTK
+- Data/model: small NLTK tokenization + JSON weights
+- DevOps: Docker, Docker Compose, Vercel (frontend)
+
+## Use case diagram
+```mermaid
+flowchart LR
+	User((User)) -->|uses| WebApp["SYTA The E-Sakhi Web App"]
+	WebApp --> Tracker["Period Tracker"]
+	WebApp --> Mood["Mood Analysis / Mood Bot"]
+	WebApp --> Blogs["Blogs / Stories"]
+	WebApp --> Maps["Nearest Clinic / Hospital"]
+	WebApp --> Appointments["Book Appointment"]
+```
+
+## User flow
+```mermaid
+flowchart TD
+	A[User visits site] --> B[Sign up / Log in]
+	B --> C{Choose feature}
+	C -->|Tracker| D[Enter last period data]
+	C -->|Mood Bot| E[Write message -> /mood API]
+	C -->|Blogs| F[Read / Publish story]
+	E --> G[Receive mood analytics]
+	D --> H[View predicted cycles]
+	H --> I[Download PDF]
+	G --> J[Suggested resources / jokes]
+	J --> K[Optionally book appointment]
+```
+
+## Deploying frontend to Vercel (force-deploy from your machine)
+Two options: connect GitHub repo to Vercel (recommended) or deploy from CLI.
+
+1) GitHub (recommended)
+- In Vercel, click "Import Project" → select GitHub repo → set Build Command `npm run build` and Output Directory `build` → add Environment Variable `REACT_APP_API_URL` with your backend URL (once backend is deployed) → Deploy.
+
+2) Vercel CLI (quick, from your machine)
+
+```bash
+npm i -g vercel
+vercel login
+cd /path/to/repo
+vercel --prod
+# Add env var for frontend to talk to backend:
+vercel env add REACT_APP_API_URL production
+```
+
+Notes: Vercel will build the React app and host the static files. The backend (FastAPI + ML weights) should be hosted separately (Render, Railway, or Docker-enabled host). After backend is live, set `REACT_APP_API_URL` in Vercel to point to the backend base URL.
+
+If you want, I can create a git branch with these README and rename changes and show the exact `git` commands to push — tell me to `create-branch` and I'll prepare the commands.
