@@ -1,17 +1,15 @@
+import React, { useEffect, useState } from "react";
 import GoogleMapReact from "google-map-react";
 import axios from "axios";
-		<a
-			href="https://donate.stripe.com/test_eVa8xv6m603J4Za148"
-			className="btn w-full btn-primary text-truncate rounded-0 border-0 position-relative"
-			style={{ zIndex: "1000", background: "#E52F8A", marginTop: "0px" }}
-		<a
-			href="https://donate.stripe.com/test_eVa8xv6m603J4Za148"
-			className="btn w-full btn-primary text-truncate rounded-0 border-0 position-relative"
-			style={{ zIndex: "1000", background: "#E52F8A", marginTop: "0px" }}
-		>
-			<strong>Heya SYTA The E-Sakhi : : </strong> Let's contribute to the
-			community donate now →
-		</a>
+import "../dashboard/Dashboard.css";
+import { Helmet } from "react-helmet";
+import { Link, useNavigate } from "react-router-dom";
+import { auth, db } from "../../firebase";
+import { onAuthStateChanged } from "firebase/auth";
+import { collection, doc } from "firebase/firestore";
+import DashboardBlogCard from "../Sections/DashboardBlogCard";
+import Modal from "../Modal/Modal";
+import "../Sections/blogCard.css";
 
 const NearHospital = () => {
 	const navigate = useNavigate();
@@ -440,7 +438,7 @@ const NearHospital = () => {
 								src={`https://maps.google.com/maps?ll=${location}&q=hospitals&amp;&z=13&amp;ie=UTF8&amp;iwloc=&amp;&output=embed`}
 								width="100%"
 								height="900"
-								allowfullscreen
+								allowFullScreen
 							></iframe>
 						</div>
 					</main>
