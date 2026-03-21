@@ -9,8 +9,8 @@
 
   <p align="center">
     <a href="https://shewin.netlify.app/" target="blank">Live Demo</a> |
-    <a href="https://github.com/Sreetama2001/SheWins-Period_Helper/issues" target="blank">Report Bug</a> |
-    <a href="https://github.com/Sreetama2001/SheWins-Period_Helper/issues" target="blank">Request Feature</a>
+    <a href="https://github.com/Sakshamjain98/SYTA-The-e-Sakhi/issues" target="blank">Report Bug</a> |
+    <a href="https://github.com/Sakshamjain98/SYTA-The-e-Sakhi/issues" target="blank">Request Feature</a>
   </p>
 </div>
 
@@ -197,13 +197,89 @@ Video Link : [Shewin Demo Video](https://www.loom.com/share/462c7f86c84c499fa979
 
 Use this space to list resources you find helpful and would like to give credit to. I've included a few of my favorites to kick things off!
 
-* [GitHub Emoji Cheat Sheet](https://www.webpagefx.com/tools/emoji-cheat-sheet)
-* [Alan Ai](https://alan.app/)
-* [Favicon Converter](https://favicon.io/favicon-converter/)
-* [Firebase](https://firebase.google.com/)
-* [Img Shields](https://shields.io)
-* [GitHub Pages](https://pages.github.com)
-* [Font Awesome](https://fontawesome.com)
-* [React Icons](https://react-icons.github.io/react-icons/search)
+# SYTA — The e-Sakhi
 
-<p align="right">(<a href="#top">back to top</a>)</p>
+Lightweight web platform combining a React frontend and a FastAPI backend with a simple mood-tracker ML service.
+
+## What this repository contains
+- Frontend: React app in `src/` (production-ready PWA files in `public/`).
+- Backend: FastAPI app in `app/` providing a `/mood` prediction endpoint using a small NLTK-based model.
+- ML helpers: `Mood_tracker/` contains training and model utils and weights files.
+- Docker: `Dockerfile` and `docker-compose.yaml` to run the API in a container.
+
+## Quick links
+- Backend entrypoint: `app/app.py`
+- Requirements: `requirements.txt`
+- Dockerfile: `Dockerfile`
+- Docker Compose: `docker-compose.yaml`
+
+## Prerequisites
+- Python 3.10+
+- Node.js + npm (for frontend dev)
+- Docker & Docker Compose (optional, for containerized run)
+
+## Run backend locally (development)
+1. Create and activate a virtual environment:
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+```
+
+2. Install Python dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+3. Start the FastAPI app (dev reload):
+
+```bash
+python -m uvicorn app.app:app --reload --host 0.0.0.0 --port 8000
+```
+
+4. Health check: open http://localhost:8000/ to see a welcome message. Use POST `/mood` to send text and receive predictions.
+
+Notes: The app uses NLTK tokenizers; the Dockerfile downloads the `punkt` package. If you run locally you may need to run `python -m nltk.downloader punkt` once.
+
+## Run frontend locally (development)
+1. From the repo root:
+
+```bash
+cd src
+npm install
+npm start
+```
+
+The frontend dev server defaults to `http://localhost:3000` and can be configured to call the backend at port 8000.
+
+## Run with Docker (recommended for quick setup)
+1. Build and run with Docker Compose:
+
+```bash
+docker-compose up --build
+```
+
+2. The API will be available at `http://localhost:8000`.
+
+To stop and remove containers:
+
+```bash
+docker-compose down
+```
+
+## Notes & troubleshooting
+- Model weights: `weights.json` is expected at the repository root (used by the backend). Ensure it exists and matches `app/app.py` path.
+- If NLTK tokenization fails, run: `python -m nltk.downloader punkt` or rebuild the Docker image which already installs it.
+- If you only want to run the backend container: `docker build -t e-sakhi-api .` then `docker run -p 8000:8000 e-sakhi-api`.
+
+## Suggested GitHub description & README blurb
+- Short description (one line): "SYTA — The e-Sakhi: React frontend + FastAPI mood-tracker with Docker support."
+- Longer blurb (1–2 paragraphs): "SYTA — The e-Sakhi is a lightweight web application combining a React-based frontend and a FastAPI backend that includes a small NLTK-based mood prediction service. The backend exposes a `/mood` endpoint which accepts text and returns predicted mood analytics. This repository includes `Dockerfile` and `docker-compose.yaml` for one-command containerized runs, plus instructions to run the frontend and backend locally for development."
+
+## Contributing
+Fork, create a feature branch, open a PR — all contributions welcome. If you plan to change model/weights, please include training notes and updated `weights.json`.
+
+---
+
+If you want, I can now: run `docker-compose up --build` here, or run the backend locally and test the `/mood` endpoint. Which would you like me to do next?
