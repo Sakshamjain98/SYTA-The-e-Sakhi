@@ -1,5 +1,4 @@
 import axios from "axios";
-import { useState } from "react";
 // import fetch  from 'node-fetch';
 async function moodGuesser(message) {
 	// const response = axios
@@ -43,43 +42,26 @@ async function moodGuesser(message) {
 	// 	console.log(response.status);
 	// });
 
-	const [data, setData] = useState("");
-	const config = {
-		method: "post",
-		url: `http://localhost:8000/mood?input_mood=${message}`,
-		headers: {},
-	};
-
-	const response = axios(config)
-		.then(function (response) {
-			console.log(JSON.stringify(response.data));
-			// console.log(JSON.stringify(response.data.reply));
-			setData(response.data.reply);
-		})
-		.catch(function (error) {
-			console.log(error);
-		});
-
-	return data;
+	const apiBase = process.env.REACT_APP_API_URL || ""; // leave empty for same-origin
+	const url = `${apiBase}/mood?input_mood=${encodeURIComponent(message)}`;
+	try {
+		const res = await axios.post(url);
+		return res.data;
+	} catch (err) {
+		console.error("ChatbotAPI moodGuesser error:", err);
+		return null;
+	}
 }
 
 const API = {
 
 	GetChatbotResponse: async (message) => {
-		return new Promise(function (resolve, reject) {
-			setTimeout(function () {
-				if (message === "hi" || message === "hello" || message === "hey")
-					resolve(
-						"Here I am  your Moody bot ! I can analyse ur mood as you write "
-					);
-				else {
-					const data = moodGuesser(message);
-					console.log();
-					// resolve();
-					// console.log(moodGuesser(message));
-				}
-			}, 1000);
-		});
+		if (!message) return "";
+		if (message === "hi" || message === "hello" || message === "hey")
+			return "Here I am your Moody bot! I can analyse your mood as you write.";
+		const data = await moodGuesser(message);
+		if (data && data.Analytics_of_Prediction) return data.Analytics_of_Prediction;
+		return "Sorry, I couldn't reach the mood API.";
 	},
 };
 

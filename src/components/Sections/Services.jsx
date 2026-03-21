@@ -72,8 +72,8 @@ export default function Services() {
 								<h2 className="font40 extraBold">Let's end Period Stigma</h2>
 								<p className="font12">
 									Sign Up and start contributing your first own blog on health
-									and hygiene. Here at Shewin we respect privacy so you can opt
-									stay anynomous or privately share the story to us .
+										and hygiene. Here at SYTA The E-Sakhi we respect privacy so you can opt
+										stay anynomous or privately share the story to us .
 								</p>
 								<ButtonsRow
 									className="flexNullCenter"

@@ -1,17 +1,17 @@
 import GoogleMapReact from "google-map-react";
 import axios from "axios";
-
-import React, { useEffect, useState } from "react";
-import "../dashboard/Dashboard.css";
-import { Helmet } from "react-helmet";
-import { Link, useNavigate } from "react-router-dom";
-import { auth, db } from "../../firebase";
-import { onAuthStateChanged } from "firebase/auth";
-import { collection, doc } from "firebase/firestore";
-import { textAlign } from "@mui/system";
-import DashboardBlogCard from "../Sections/DashboardBlogCard";
-import Modal from "../Modal/Modal";
-import "../Sections/blogCard.css";
+		<a
+			href="https://donate.stripe.com/test_eVa8xv6m603J4Za148"
+			className="btn w-full btn-primary text-truncate rounded-0 border-0 position-relative"
+			style={{ zIndex: "1000", background: "#E52F8A", marginTop: "0px" }}
+		<a
+			href="https://donate.stripe.com/test_eVa8xv6m603J4Za148"
+			className="btn w-full btn-primary text-truncate rounded-0 border-0 position-relative"
+			style={{ zIndex: "1000", background: "#E52F8A", marginTop: "0px" }}
+		>
+			<strong>Heya SYTA The E-Sakhi : : </strong> Let's contribute to the
+			community donate now →
+		</a>
 
 const NearHospital = () => {
 	const navigate = useNavigate();
@@ -102,7 +102,7 @@ const NearHospital = () => {
 				className="btn w-full btn-primary text-truncate rounded-0 border-0 position-relative"
 				style={{ zIndex: "1000", background: "#E52F8A", marginTop: "0px" }}
 			>
-				<strong>Heya Shewinner : : </strong> Let's contribute to the
+				<strong>Heya SYTA The E-Sakhi : : </strong> Let's contribute to the
 				community donate now →
 			</a>
 

@@ -3,9 +3,9 @@
     "background_color": "#ffffff",
     "display": "standalone",
     "scope": "/",
-    "start_url": "https://shewin.netlify.app",
-    "name": "SheWin",
-    "short_name": "Shewin",
+    "start_url": "/",
+    "name": "SYTA The E-Sakhi",
+    "short_name": "SYTA",
     "icons": [
         {
             "src": "/icon-192x192.png",
