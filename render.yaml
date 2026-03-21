@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: syta-e-sakhi-backend
+    env: docker
+    dockerfilePath: ./Dockerfile
+    plan: free
+    autoDeploy: true
+    regions:
+      - oregon
+    envVars: []

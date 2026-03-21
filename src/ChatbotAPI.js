@@ -43,9 +43,11 @@ async function moodGuesser(message) {
 	// });
 
 	const apiBase = process.env.REACT_APP_API_URL || ""; // leave empty for same-origin
-	const url = `${apiBase}/mood?input_mood=${encodeURIComponent(message)}`;
+	const url = apiBase
+		? `${apiBase}/mood?input_mood=${encodeURIComponent(message)}`
+		: `/api/mood?input_mood=${encodeURIComponent(message)}`;
 	try {
-		const res = await axios.post(url);
+		const res = await axios.get(url);
 		return res.data;
 	} catch (err) {
 		console.error("ChatbotAPI moodGuesser error:", err);
